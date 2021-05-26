@@ -65,8 +65,8 @@ int ar[no],br[no],cr[no];//,dr[no],er[no];
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 
 int calc(vi &arr, vii &dp, int n, int sum) {
-    if(sum==0) return 1;
-    if(n==0) return 0;
+    if(sum==0) return dp[n][sum]=1;
+    if(n==0) return dp[n][sum]=0;
     if(dp[n][sum]!=-1) return dp[n][sum];
     if(sum>=ar[n-1]) {
         return dp[n][sum]=(calc(arr,dp,n-1,sum-arr[n-1]) ||calc(arr,dp,n-1,sum)) ;
@@ -82,8 +82,8 @@ void solve () {
     vi arr(n+1) ;
     vii dp(n+1,vi(x+1,-1)) ;
     rep(i,0,n,1) cin>>arr[i] ;
-    if(calc(arr,dp,n,x)!=1) cout<<"YES";
-    else cout<<"NO";
+    if(calc(arr,dp,n,x)!=1) cout<<"NO";
+    else cout<<"YES";
     debug(dp)
 }
 
